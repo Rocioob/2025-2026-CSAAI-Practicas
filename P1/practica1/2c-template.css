@@ -28,6 +28,10 @@
     height: auto ; 
 }
 
+.video{
+    width: 400px ;
+    height: auto ;
+}
 /* alinea las columnas d efotos clau/frankie y lagona/cleo en index*/
 .fotos-aportaciones {
     display: flex;
