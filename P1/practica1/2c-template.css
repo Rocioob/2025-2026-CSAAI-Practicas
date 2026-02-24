@@ -1,0 +1,233 @@
+
+.fotos-y-imagen {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* contenedor para imagenes en el about*/
+.media-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+/* foto de todos en la tarta en el about*/
+.img-todos {
+    width: 400px ;
+    height: auto ;
+}
+
+/* foto con el novio en el about*/
+.img-pequena {
+    width: 220px ;
+    height: auto ; 
+}
+
+/* alinea las columnas d efotos clau/frankie y lagona/cleo en index*/
+.fotos-aportaciones {
+    display: flex;
+    gap: 120px; /* separación entre fotos */
+    margin-top: 15px;
+}
+
+
+/* fotos pequeñas en el index*/
+.fotos-aportaciones img {
+    width: 150px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+#amigas {
+    margin-left: 450px; 
+}
+
+#draculaura {
+    text-align: center; 
+    color: rgba(204, 29, 140, 0.838);
+}
+
+#proyectos{text-align: center; 
+    color: rgba(204, 29, 140, 0.838);
+}
+
+.volver-inicio{
+    display:block; 
+    margin: 30px auto; 
+    text-align:center; 
+    color:#cc1d8c; 
+    font-weight:bold;
+}
+#acerca{
+    text-align: center; 
+    color: rgba(204, 29, 140, 0.838);
+}
+
+@media screen and (max-width: 700px) {
+    .media-flex {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* modelo de caja para todos los elementos */
+* {
+    box-sizing: border-box;
+  }
+  
+/* columnas de ancho diferente que se colocan una tras otra */
+.columna {
+float: left;
+padding: 10px;
+min-height: 1000px;
+}
+
+.izquierda {
+width: 25%;
+}
+
+.derecha {
+width: 75%;
+}
+
+body {
+    background-image: url('fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+}
+
+/*  eliminar la superposición */
+.filla:after {
+content: "";
+display: table;
+clear: both;
+}
+
+/* los fondos de las columnas los hgao tranparente spara que se vea el fondo que he puesto */
+#c1 {
+    background-color: transparent;
+}
+
+#c2 {
+    background-color: transparent;
+}
+
+
+ul {
+    /* para poner el simbolo que yo quiero en cada elemento de la lista */
+    list-style-type: " ♥ "; 
+} 
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+
+.iresponsive {
+    padding: 0 6px;
+    float: left;
+    width: 50%;
+  }
+
+
+/* se vea bien en dispositvos móviles */
+
+@media screen and (max-width: 600px) {
+    .columna {
+      width: 100%;
+    }
+
+    .iresponsive {
+        width: 100%;
+    }
+}
+
+
+/* tarjetas de proyectos (cards) */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(204, 29, 140, 0.15);
+    border: 1px solid #cc1d8c;
+    padding: 24px;
+    margin: 10px;
+    width: 320px;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.card h2 {
+    color: #cc1d8c;
+    margin-bottom: 10px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .cards {
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+    .card {
+        width: 95vw;
+        margin: 10px 0;
+    }
+}
+
+/* Estilos para el menú de navegación */
+.menu {
+    width: 100%;
+    background: rgba(204, 29, 140, 0.2);
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+.menu li {
+    margin: 0 20px;
+}
+.menu a {
+    text-decoration: none;
+    color: #cc1d8c;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px 0;
+    display: block;
+}
+.menu .activo a {
+    border-bottom: 2px solid #cc1d8c;
+    color: #000;
+}
+
+
+@media screen and (max-width: 600px) {
+    .menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu li {
+        margin: 10px 0;
+    }
+}
+
