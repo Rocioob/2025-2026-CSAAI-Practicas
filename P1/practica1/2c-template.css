@@ -224,7 +224,6 @@ img {
     color: #000;
 }
 
-
 @media screen and (max-width: 600px) {
     .menu ul {
         flex-direction: column;
