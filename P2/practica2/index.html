@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> BOOM - Práctica 2</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="crono.js" defer></script>
+    
+</head>
+<body>
+    <div class="container">
+        <h1 class="boom">BOOM</h1>
+        <div class="clave-secreta" id="clave-secreta">
+            <span class="digito" id="d0"> *</span>
+            <span class="digito" id="d1"> *</span>
+            <span class="digito" id="d2"> *</span>
+            <span class="digito" id="d3"> *</span>
+        </div>
+        
+        <div class="info">
+            <div><span id="cronometro">00:00:00</span></div>
+            <div>Intentos restantes: <span id="intentos">7</span></div>
+        </div>
+
+        <!-- va a aparecer el mensaje de inicio al inicio, acertado si acertamos, fallo si fallamos -->
+        <div class="mensaje" id="mensaje"></div>
+        <!-- Imagen de victoria -->
+        <div id="victoria-img" style="display:none; text-align:center; margin-top:20px;">
+            <img src="felicidades.gif" alt="Victoria" style="max-width:200px;">
+        </div>
+
+        <!-- creamos los botones del 0 al 9 -->
+        <div class="botones-numericos" id="botones-numericos">
+            <button class="num-btn" onclick="presionarNumero(7, this)">7</button>
+            <button class="num-btn" onclick="presionarNumero(8, this)">8</button>
+            <button class="num-btn" onclick="presionarNumero(9, this)">9</button>
+            <button class="num-btn" onclick="presionarNumero(4, this)">4</button>
+            <button class="num-btn" onclick="presionarNumero(5, this)">5</button>
+            <button class="num-btn" onclick="presionarNumero(6, this)">6</button>
+            <button class="num-btn" onclick="presionarNumero(1, this)">1</button>
+            <button class="num-btn" onclick="presionarNumero(2, this)">2</button>
+            <button class="num-btn" onclick="presionarNumero(3, this)">3</button>   
+            <button class="num-btn" style="visibility: hidden;">X</button> <!-- boton oculto para centrar el 0 -->
+            <button class="num-btn" onclick="presionarNumero(0, this)">0</button> 
+        </div>
+        <div class="botones-control">
+            <button id="start-btn">Start</button>
+            <button id="stop-btn">Stop</button>
+            <button id="reset-btn">Reset</button>
+        </div>
+    </div>
+</body>
+</html>
