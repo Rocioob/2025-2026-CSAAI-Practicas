@@ -82,7 +82,7 @@ function presionarNumero(num, boton) {
         }
     }
 
-    dMensaje.innerHTML = encontrado ? '¡Acertaste el ${num}!' : 'El ${num} no está.';
+    dMensaje.innerHTML = encontrado ? `¡Acertaste el ${num}!` : `El ${num} no está.`;
 
     if (aciertos.every(a => a === true)) {
         finalizarPartida(true);
@@ -96,10 +96,10 @@ function finalizarPartida(victoria) {
     crono.stop();
     if (victoria) {
         let usados = MAX_INTENTOS - intentosRestantes;
-        dMensaje.innerHTML = '¡VICTORIA! Tiempo: ${dCrono.innerHTML}, Intentos: ${usados}, Restantes: ${intentosRestantes}';
+        dMensaje.innerHTML = `¡VICTORIA! Tiempo: ${dCrono.innerHTML}, Intentos: ${usados}, Restantes: ${intentosRestantes}`;
         document.getElementById('victoria-img').style.display = 'block';
     } else {
-        dMensaje.innerHTML = 'BOOM! Has perdido. La clave era ${claveSecreta.join("")}';
+        dMensaje.innerHTML = `BOOM! Has perdido. La clave era ${claveSecreta.join("")}`;
         
         claveSecreta.forEach((n, i) => document.getElementById('d' + i).innerHTML = n);
     }
