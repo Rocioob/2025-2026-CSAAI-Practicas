@@ -1,3 +1,5 @@
+/* jshint esversion: 6, browser: true */
+/* exported presionarNumero */
 
 class Crono {
     constructor(display) {
@@ -8,8 +10,7 @@ class Crono {
         this.intervalo = null;
     }
 
-
-    format(ms) {
+       format(ms) {
         const totalSeg = Math.floor(ms / 1000);
         const min = Math.floor(totalSeg / 60).toString().padStart(2, '0');
         const seg = (totalSeg % 60).toString().padStart(2, '0');
@@ -40,7 +41,6 @@ class Crono {
     }
 }
 
-
 const MAX_INTENTOS = 7;
 let claveSecreta = generarClaveSecreta();
 let intentosRestantes = MAX_INTENTOS;
@@ -49,7 +49,6 @@ let partidaTerminada = false;
 
 const dCrono = document.getElementById('cronometro');
 const crono = new Crono(dCrono);
-
 const dIntentos = document.getElementById('intentos');
 const dMensaje = document.getElementById('mensaje');
 
@@ -57,7 +56,9 @@ function generarClaveSecreta() {
     let numeros = [];
     while (numeros.length < 4) {
         let n = Math.floor(Math.random() * 10);
-        if (!numeros.includes(n)) numeros.push(n);
+        if (!numeros.includes(n)) {
+            numeros.push(n);
+        }
     }
     return numeros;
 }
@@ -78,9 +79,10 @@ function presionarNumero(num, boton) {
             encontrado = true;
             const digitoVisual = document.getElementById('d' + i);
             digitoVisual.innerHTML = num;
-            digitoVisual.style.color = "#33ff33"; // color acierto
+            digitoVisual.style.color = "#33ff33"; 
         }
     }
+
 
     dMensaje.innerHTML = encontrado ? `¡Acertaste el ${num}!` : `El ${num} no está.`;
 
@@ -100,17 +102,16 @@ function finalizarPartida(victoria) {
         document.getElementById('victoria-img').style.display = 'block';
     } else {
         dMensaje.innerHTML = `BOOM! Has perdido. La clave era ${claveSecreta.join("")}`;
-        
-        claveSecreta.forEach((n, i) => document.getElementById('d' + i).innerHTML = n);
+        claveSecreta.forEach((n, i) => {
+            document.getElementById('d' + i).innerHTML = n;
+        });
     }
 }
 
-// botones de control
 document.getElementById('start-btn').onclick = () => crono.start();
 document.getElementById('stop-btn').onclick = () => crono.stop();
 document.getElementById('reset-btn').onclick = resetJuego;
 
-// reinicia el juego
 function resetJuego() {
     crono.reset();
     claveSecreta = generarClaveSecreta();
@@ -122,11 +123,10 @@ function resetJuego() {
     dMensaje.innerHTML = "";
     document.getElementById('victoria-img').style.display = 'none';
 
-
     for (let i = 0; i < 4; i++) {
         const d = document.getElementById('d' + i);
         d.innerHTML = "*";
-        d.style.color = "#ff4444";
+        d.style.color = "#ff4444"; 
     }
 
     const botones = document.getElementsByClassName('num-btn');
