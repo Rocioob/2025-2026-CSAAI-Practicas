@@ -140,7 +140,7 @@ function draw() {
     
     // UI
     document.getElementById('score').textContent = `PUNTOS: ${score}`;
-    document.getElementById('lives').textContent = `VIDAS: ${'❤️'.repeat(lives)}`;
+    document.getElementById('lives').textContent = `VIDAS: ${' \u2764\ufe0f '.repeat(lives)}`;
 
     if (gameOver || victory) {
         ctx.fillStyle = "rgba(0,0,0,0.8)";
