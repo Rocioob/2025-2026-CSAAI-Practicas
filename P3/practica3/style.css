@@ -77,3 +77,36 @@ canvas {
 }
 
 @media (pointer: fine) { #mobile-controls { display: none; } }
+
+/* Ajustes para modo horizontal en móviles */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    #game-container {
+        display: flex;
+        align-items: center;
+    }
+
+    canvas {
+        max-height: 80vh; /* El canvas ocupa más espacio vertical */
+        width: auto;
+    }
+
+    #mobile-controls {
+        position: fixed;
+        bottom: 10px;
+        width: 95%;
+        max-width: none;
+        margin-top: 0;
+        justify-content: space-between;
+    }
+
+    #mobile-controls button {
+        width: 55px;  /* Botones más pequeños para que no tapen vidas */
+        height: 55px;
+        font-size: 1.2rem;
+    }
+
+    #ui-overlay {
+        font-size: 12px; /* Letra más pequeña para que no se corte */
+        top: 5px;
+    }
+}
