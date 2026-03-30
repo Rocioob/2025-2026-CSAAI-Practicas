@@ -143,12 +143,31 @@ function draw() {
     document.getElementById('lives').textContent = `VIDAS: ${' \u2764\ufe0f '.repeat(lives)}`;
 
     if (gameOver || victory) {
-        ctx.fillStyle = "rgba(0,0,0,0.8)";
+        ctx.fillStyle = "rgba(0,0,0,0.85)"; // Fondo un poco más oscuro
         ctx.fillRect(0,0,canvas.width, canvas.height);
+        
         ctx.fillStyle = victory ? "#0f2" : "red";
         ctx.textAlign = "center";
-        ctx.font = "bold 40px Courier New";
-        ctx.fillText(victory ? "¡VICTORIA!" : "GAME OVER", 400, 280);
+        ctx.textBaseline = "middle"; // Centrado vertical preciso
+
+        // --- AJUSTE PARA HORIZONTAL ---
+        // Detectamos si la pantalla es bajita (landscape móvil)
+        const isLandscape = window.innerHeight < 500;
+        
+        // Ajustamos tamaño de fuente y posición Y según la orientación
+        const fontSize = isLandscape ? "bold 60px" : "bold 80px";
+        const titleY = isLandscape ? canvas.height * 0.4 : canvas.height / 2 - 40;
+        const subtitleY = isLandscape ? canvas.height * 0.6 : canvas.height / 2 + 40;
+
+        ctx.font = `${fontSize} Courier New`;
+        ctx.fillText(victory ? "¡VICTORIA!" : "GAME OVER", canvas.width/2, titleY);
+        
+        // Subtítulo opcional para dar contexto
+        ctx.fillStyle = "white";
+        ctx.font = isLandscape ? "20px Courier New" : "30px Courier New";
+        ctx.fillText(victory ? "Sector Canva Centauri asegurado" : "La humanidad ha caído...", canvas.width/2, subtitleY);
+
+        // Mostramos el botón HTML
         document.getElementById('play-again-btn').style.display = "block";
     }
 }

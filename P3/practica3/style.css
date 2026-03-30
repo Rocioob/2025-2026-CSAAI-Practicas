@@ -100,8 +100,8 @@ canvas {
     }
 
     #mobile-controls button {
-        width: 65px;  /* Botones más pequeños para que no tapen vidas */
-        height: 65px;
+        width: 85px;  /* Botones más pequeños para que no tapen vidas */
+        height: 85px;
         font-size: 1.2rem;
     }
 
