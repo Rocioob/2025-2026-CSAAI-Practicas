@@ -5,7 +5,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 800; canvas.height = 600;
 
-// Recursos
+
 const playerImg = new Image(); playerImg.src = 'nave.png';
 const alienImg = new Image(); alienImg.src = 'aliens.png';
 const explosionImg = new Image(); explosionImg.src = 'explosion.png';
@@ -16,7 +16,7 @@ const loseLifeSound = new Audio('lose-life.mp3');
 const victorySound = new Audio('victory.mp3');
 const defeatSound = new Audio('defeat.mp3');
 
-// Estado de juego
+
 let score = 0, lives = 3, energy = 100;
 let gameOver = false, victory = false;
 const ENERGY_COST = 20, RECHARGE_RATE = 0.4;
@@ -41,7 +41,7 @@ function shoot() {
     }
 }
 
-// Controles Táctiles
+
 let moveInterval = null;
 function startMove(dir) {
     if (moveInterval) clearInterval(moveInterval);
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-shoot').ontouchstart = (e) => { e.preventDefault(); shoot(); };
 });
 
-// Teclado
+
 const keys = {};
 window.onkeydown = e => { keys[e.code] = true; if(e.code === 'Space') shoot(); };
 window.onkeyup = e => keys[e.code] = false;
@@ -67,15 +67,15 @@ window.onkeyup = e => keys[e.code] = false;
 function update() {
     if (gameOver || victory) return;
 
-    // Recarga energía
+    // recarga de energia
     if (energy < 100) energy += RECHARGE_RATE;
     document.getElementById('energy-bar').style.width = energy + "%";
 
-    // Mover Jugador (Teclado)
+    // mover por teclado
     if (keys.ArrowLeft && player.x > 0) player.x -= player.speed;
     if (keys.ArrowRight && player.x < canvas.width - player.w) player.x += player.speed;
     
-    // Balas Jugador
+    
     player.bullets.forEach((b, i) => {
         b.y -= 10;
         if (b.y < 0) player.bullets.splice(i, 1);
@@ -88,7 +88,7 @@ function update() {
         });
     });
 
-    // Balas Enemigas (Movimiento y Colisión)
+    
     aliens.bullets.forEach((eb, i) => {
         eb.y += 4;
         if (eb.y > canvas.height) aliens.bullets.splice(i, 1);
@@ -100,7 +100,7 @@ function update() {
         }
     });
 
-    // Movimiento Flota
+    
     let aliveAliens = aliens.data.filter(a => a.alive);
     let currentSpeed = (aliens.speed + (24 - aliveAliens.length) * 0.1) * aliens.direction;
     let edge = false;
@@ -115,7 +115,7 @@ function update() {
         aliens.data.forEach(a => { if (a.alive) a.y += 20; });
     }
 
-    // DISPARO ENEMIGO (Ocasional)
+    // DISPARO ENEMIGO
     if (Math.random() < 0.015 && aliveAliens.length > 0) {
         const shooter = aliveAliens[Math.floor(Math.random() * aliveAliens.length)];
         aliens.bullets.push({ x: shooter.x + shooter.w / 2, y: shooter.y + shooter.h });
@@ -128,36 +128,36 @@ function update() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Dibujar Naves
+    // Naves
     ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
     aliens.data.forEach(a => {
         if (a.alive) ctx.drawImage(alienImg, a.x, a.y, a.w, a.h);
         else if (a.explosion > 0) { ctx.drawImage(explosionImg, a.x, a.y, a.w, a.h); a.explosion--; }
     });
 
-    // Dibujar Balas
+    // balas
     ctx.fillStyle = '#0f2';
     player.bullets.forEach(b => ctx.fillRect(b.x, b.y, 4, 15));
     ctx.fillStyle = '#f00';
     aliens.bullets.forEach(eb => ctx.fillRect(eb.x, eb.y, 4, 15));
     
-    // UI
+    
     document.getElementById('score').textContent = `PUNTOS: ${score}`;
     document.getElementById('lives').textContent = `VIDAS: ${' \u2764\ufe0f '.repeat(lives)}`;
 
     if (gameOver || victory) {
-        ctx.fillStyle = "rgba(0,0,0,0.85)"; // Fondo un poco más oscuro
+        ctx.fillStyle = "#633d6e"; 
         ctx.fillRect(0,0,canvas.width, canvas.height);
         
         ctx.fillStyle = victory ? "#0f2" : "red";
         ctx.textAlign = "center";
-        ctx.textBaseline = "middle"; // Centrado vertical preciso
+        ctx.textBaseline = "middle";
 
-        // --- AJUSTE PARA HORIZONTAL ---
-        // Detectamos si la pantalla es bajita (landscape móvil)
+        // para horizontal
+    
         const isLandscape = window.innerHeight < 500;
         
-        // Ajustamos tamaño de fuente y posición Y según la orientación
+        
         const fontSize = isLandscape ? "bold 60px" : "bold 80px";
         const titleY = isLandscape ? canvas.height * 0.4 : canvas.height / 2 - 40;
         const subtitleY = isLandscape ? canvas.height * 0.6 : canvas.height / 2 + 40;
@@ -165,12 +165,12 @@ function draw() {
         ctx.font = `${fontSize} Courier New`;
         ctx.fillText(victory ? "¡VICTORIA!" : "GAME OVER", canvas.width/2, titleY);
         
-        // Subtítulo opcional para dar contexto
+        
         ctx.fillStyle = "white";
         ctx.font = isLandscape ? "20px Courier New" : "30px Courier New";
         ctx.fillText(victory ? "Sector Canva Centauri asegurado" : "La humanidad ha caído...", canvas.width/2, subtitleY);
 
-        // Mostramos el botón HTML
+        
         document.getElementById('play-again-btn').style.display = "block";
     }
 }
