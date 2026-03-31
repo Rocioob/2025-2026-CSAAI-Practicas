@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+
+
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 800; canvas.height = 600;
@@ -69,9 +72,9 @@ function update() {
     document.getElementById('energy-bar').style.width = energy + "%";
 
     // Mover Jugador (Teclado)
-    if (keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
-    if (keys['ArrowRight'] && player.x < canvas.width - player.w) player.x += player.speed;
-
+    if (keys.ArrowLeft && player.x > 0) player.x -= player.speed;
+    if (keys.ArrowRight && player.x < canvas.width - player.w) player.x += player.speed;
+    
     // Balas Jugador
     player.bullets.forEach((b, i) => {
         b.y -= 10;
