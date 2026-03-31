@@ -146,7 +146,7 @@ function draw() {
     document.getElementById('lives').textContent = `VIDAS: ${' \u2764\ufe0f '.repeat(lives)}`;
 
     if (gameOver || victory) {
-        ctx.fillStyle = "#633d6e"; 
+        ctx.fillStyle = "#68506e"; 
         ctx.fillRect(0,0,canvas.width, canvas.height);
         
         ctx.fillStyle = victory ? "#0f2" : "red";
