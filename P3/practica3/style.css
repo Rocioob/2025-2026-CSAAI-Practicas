@@ -35,7 +35,7 @@ canvas {
 #energy-container {
     width: 100px; height: 10px;
     border: 1px solid #00f2ff;
-    background: rgba(0,0,0,0.5);
+    background: #633d6e;
 }
 
 #energy-bar {
@@ -57,7 +57,7 @@ canvas {
 #mobile-controls button {
     width: 70px; height: 70px;
     border-radius: 50%;
-    background: rgba(221, 19, 221, 0.3);
+    background: #633d6e;
     border: 2px solid #dd13dd;
     color: white;
     font-size: 1.8rem;
