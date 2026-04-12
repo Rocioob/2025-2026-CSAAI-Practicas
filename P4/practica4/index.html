@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat The Word</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-board">
+        <header class="main-header">
+            <div class="title-area">
+                <h1>Beat The Word</h1>
+                <p>Sigue la secuencia al ritmo del Beat</p>
+            </div>
+            <div class="stats-bar">
+                <div class="stat"><span>Nivel</span><b id="lvl">1/5</b></div>
+                <div class="stat"><span>Tiempo</span><b id="time">0.0s</b></div>
+                <div class="stat"><span>Estado</span><b id="status">En espera</b></div>
+            </div>
+        </header>
+
+        <div class="config-option">
+            <input type="checkbox" id="show-titles" checked>
+            <label for="show-titles">Mostrar título en las tarjetas</label>
+        </div>
+
+        <div class="layout">
+            <aside class="sidebar">
+                <section class="config-card">
+                    <h3>Configuración</h3>
+                    <label>Secuencia</label>
+                    <select id="word-pair">
+                        <option value="f1">Maya / Raya</option>
+                        <option value="f2">Mesi / Mesa</option>
+                        <option value="f3">Pata / Papa</option>
+                        <option value="f4">Fresa / Presa</option>
+                    </select>
+                    
+                    <label>Nivel inicial</label>
+                    <select id="start-lvl">
+                        <option value="1">Nivel 1</option>
+                        <option value="2">Nivel 2</option>
+                        <option value="3">Nivel 3</option>
+                        <option value="4">Nivel 4</option>
+                        <option value="5">Nivel 5</option>
+                    </select>
+
+                    <div class="actions">
+                        <button id="btn-start" class="btn-primary">Empezar partida</button>
+                        <button id="btn-stop" disabled>Detener</button>
+                        <button id="btn-music">Música: ON</button>
+                    </div>
+                </section>
+            </aside>
+
+            <main class="game-area">
+                <div class="level-indicator-container">
+                    <div id="big-lvl-display" class="big-level">1/5</div>
+                    <div class="current-word-oval">
+                        <h2 id="display-word">Pulsa "Empezar"</h2>
+                    </div>
+                </div>
+                
+                <div class="grid" id="grid"></div>
+            </main>
+        </div>
+    </div>
+    
+    <audio id="bg-music" loop src="musica.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
