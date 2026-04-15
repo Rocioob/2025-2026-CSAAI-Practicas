@@ -93,3 +93,48 @@ button:hover { background: #66bb6a; transform: scale(1.05); }
     color: #ffeb3b;
     text-shadow: 4px 4px 15px rgba(0,0,0,0.8);
 }
+
+#mobile-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    pointer-events: none; /* Para que no bloquee clics accidentales */
+}
+
+#mobile-controls button {
+    pointer-events: auto; /* Activamos clics para los botones */
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    border-radius: 50%;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#mobile-controls button:active {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.d-pad { display: flex; flex-direction: column; align-items: center; }
+.d-pad-horizontal { display: flex; }
+
+.action-buttons {
+    display: flex;
+    align-items: flex-end;
+}
+
+#btn-shoot {
+    width: 80px !important;
+    height: 80px !important;
+    background: #ff5722 !important;
+}
+
+/* Solo mostrar en pantallas pequeñas o dispositivos táctiles */
+@media (pointer: coarse) {
+    #mobile-controls { display: flex !important; }
+}

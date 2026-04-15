@@ -303,4 +303,34 @@ function gameLoop() {
 }
 
 function resetToMenu() { location.reload(); }
+
+// Mapeo de botones táctiles
+const mobileButtons = {
+    'btn-up': 'ArrowUp',
+    'btn-down': 'ArrowDown',
+    'btn-left': 'ArrowLeft',
+    'btn-right': 'ArrowRight',
+    'btn-rotate-l': 'KeyA',
+    'btn-rotate-r': 'KeyD',
+    'btn-shoot': 'Space'
+};
+
+// Configurar eventos para cada botón
+Object.entries(mobileButtons).forEach(([id, keyCode]) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+
+    // Al tocar (Presionar)
+    btn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keys[keyCode] = true;
+    });
+
+    // Al levantar el dedo (Soltar)
+    btn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keys[keyCode] = false;
+    });
+});
+
 draw();
