@@ -115,28 +115,30 @@ button:hover { background: #66bb6a; transform: scale(1.05); }
         flex-direction: row;
         justify-content: center;
         align-items: flex-end;
-        width: 70vw;
-        max-width: 600px;
+        width: 90vw;
+        max-width: 480px;
+        min-width: 220px;
         left: 50%;
         transform: translateX(-50%);
         right: unset;
         bottom: 10px;
         top: unset;
         background: rgba(34, 34, 34, 0.85);
-        height: auto;
+        height: 70px;
         border-radius: 20px;
         box-shadow: 0 4px 24px rgba(0,0,0,0.4);
         pointer-events: auto;
+        overflow: hidden;
     }
     #mobile-controls button {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
         font-size: 1.1rem;
         margin: 3px;
     }
     #btn-shoot {
-        width: 60px !important;
-        height: 60px !important;
+        width: 54px !important;
+        height: 54px !important;
     }
 }
 
