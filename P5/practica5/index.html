@@ -36,22 +36,24 @@
         <audio id="goalSound" src="goal.mp3" preload="auto"></audio>
         <canvas id="gameCanvas"></canvas>
     </div>
-    <div id="mobile-controls">
-            <div class="d-pad">
-                <button id="btn-up"></button>
-                <div class="d-pad-horizontal">
-                    <button id="btn-left"></button>
-                    <button id="btn-right"></button>
-                </div>
-                <button id="btn-down"></button>
+    
+    <div id="mobile-controls" class="hidden">
+        <div class="d-pad">
+            <button id="btn-up"></button>
+            <div class="d-pad-horizontal">
+                <button id="btn-left"></button>
+                <button id="btn-right"></button>
             </div>
-            <div class="action-buttons">
-                <button id="btn-rotate-l">A</button>
-                <button id="btn-rotate-r">D</button>
-                <button id="btn-shoot">SHOOT</button>
-            </div>
+            <button id="btn-down"></button>
+        </div>
+
+        <div class="action-buttons">
+            <button id="btn-rotate-l">A</button>
+            <button id="btn-shoot" style="background: rgba(76, 175, 80, 0.6);">¡</button> 
+            <button id="btn-rotate-r">D</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 
 </body>
