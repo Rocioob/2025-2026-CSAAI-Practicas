@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     background-color: #1a1a1a;
@@ -12,13 +13,10 @@ body {
 
 #game-container {
     position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Esto mantiene el canvas centrado */
-    overflow: hidden;
+    border: 4px solid #444;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    background: #2e7d32;
 }
 
 canvas {
@@ -99,20 +97,43 @@ button:hover { background: #66bb6a; transform: scale(1.05); }
 
 #mobile-controls {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end; /* Alinea los botones abajo */
-    position: absolute;
-    bottom: 20px; /* Separación del borde inferior */
+    justify-content: center;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 10px 0 20px 0;
+    position: fixed;
     left: 0;
-    right: 0;
-    width: 100%;
-    padding: 0 20px; /* Separación de los bordes laterales */
-    pointer-events: none;
-    z-index: 20; /* Por encima del canvas */
+    bottom: 0;
+    background: rgba(34, 34, 34, 0.95);
+    z-index: 100;
+    pointer-events: none; /* Para que no bloquee clics accidentales fuera de los botones */
+    box-sizing: border-box;
 }
 
-.d-pad, .action-buttons {
-    pointer-events: auto; /* Permite tocar los botones */
+/* Ajuste para landscape: controles más pequeños y pegados abajo */
+@media (orientation: landscape) and (pointer: coarse) {
+    #mobile-controls {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100vw;
+        max-width: 100vw;
+        padding: 5px 0 5px 0;
+        bottom: 0;
+        top: unset;
+        background: rgba(34, 34, 34, 0.85);
+        height: auto;
+    }
+    #mobile-controls button {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+        margin: 3px;
+    }
+    #btn-shoot {
+        width: 60px !important;
+        height: 60px !important;
+    }
 }
 
 #mobile-controls button {
@@ -149,21 +170,4 @@ button:hover { background: #66bb6a; transform: scale(1.05); }
 
 @media (pointer: coarse) {
     #mobile-controls { display: flex !important; }
-}
-
-@media (orientation: landscape) {
-    #mobile-controls button {
-        width: 50px;
-        height: 50px;
-        margin: 2px;
-    }
-    
-    #hud {
-        top: 5px; /* Sube un poco el marcador para ganar espacio */
-    }
-
-    /* Si el canvas es muy grande, reducimos su tamaño máximo en horizontal */
-    canvas {
-        max-height: 70vh; 
-    }
 }
