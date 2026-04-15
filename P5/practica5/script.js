@@ -334,3 +334,17 @@ Object.entries(mobileButtons).forEach(([id, keyCode]) => {
 });
 
 draw();
+
+// --- Mostrar controles móviles solo en dispositivos táctiles ---
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
+const mobileControls = document.getElementById('mobile-controls');
+if (mobileControls) {
+    if (isTouchDevice()) {
+        mobileControls.style.display = 'flex';
+    } else {
+        mobileControls.style.display = 'none';
+    }
+}
