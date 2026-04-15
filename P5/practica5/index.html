@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot League - Arcade Soccer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="menu" class="overlay">
+            <h1>BOT LEAGUE</h1>
+            <p>Selecciona Modo de Juego</p>
+            <div class="menu-buttons">
+                <button onclick="startGame('3-goals')">Partido a 3 Goles</button>
+                <button onclick="startGame('golden-goal')">Gol de Oro</button>
+            </div>
+        </div>
+
+        <div id="game-over" class="overlay hidden">
+            <h2 id="result-text">¡HAS GANADO!</h2>
+            <button onclick="resetToMenu()">Volver al Menú</button>
+        </div>
+
+        <div id="hud" class="hidden">
+            <div id="timer">00:00</div>
+            <div class="score-container">
+                <span class="team-name azul">AZUL</span>
+                <span id="p-score">0</span> - <span id="b-score">0</span>
+                <span class="team-name rojo">ROJO</span>
+            </div>
+            <div id="countdown"></div>
+        </div>
+        <audio id="bgMusic" src="fondo.mp3" loop preload="auto"></audio>
+        <audio id="goalSound" src="goal.mp3" preload="auto"></audio>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
