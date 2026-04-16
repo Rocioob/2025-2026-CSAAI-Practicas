@@ -96,6 +96,8 @@ button:hover { background: #66bb6a; transform: scale(1.05); }
     text-shadow: 4px 4px 15px rgba(0,0,0,0.8);
     white-space: nowrap;
     text-align: center;
+    z-index: 20;
+    pointer-events: none;
 }
 
 @media (orientation: landscape) and (pointer: coarse) {
