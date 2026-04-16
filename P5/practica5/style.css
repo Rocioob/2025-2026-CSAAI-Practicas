@@ -88,10 +88,20 @@ button:hover { background: #66bb6a; transform: scale(1.05); }
 
 #countdown {
     position: absolute;
-    top: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 6rem;
     color: #ffeb3b;
     text-shadow: 4px 4px 15px rgba(0,0,0,0.8);
+    white-space: nowrap;
+    text-align: center;
+}
+
+@media (orientation: landscape) and (pointer: coarse) {
+    #countdown {
+        font-size: 3.5rem;
+    }
 }
 
 #mobile-controls {
