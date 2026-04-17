@@ -10,7 +10,7 @@ let score = { player: 0, bot: 0 };
 let keys = {};
 let totalSeconds = 0;
 let timerInterval = null;
-let animationId = null; // Para controlar mejor el bucle
+let animationId = null; 
 
 const ball = { x: 400, y: 250, radius: 12, vx: 0, vy: 0, friction: 0.985 };
 const player = { x: 150, y: 250, radius: 20, color: '#2196f3', speed: 4.5, angle: 0 };
@@ -36,10 +36,10 @@ function updateTimer() {
 }
 
 function startGame(mode) {
-    // --- LÓGICA DE AUDIO ---
+    
     const music = document.getElementById('bgMusic');
     if (music) {
-        music.volume = 0.2; // Volumen bajo para empezar
+        music.volume = 0.2; 
         music.play()
             .then(() => console.log("Música reproduciéndose"))
             .catch(error => console.error("Error al reproducir audio:", error));
@@ -62,7 +62,7 @@ function startGame(mode) {
 
 function startCountdown() {
     gameRunning = false;
-    cancelAnimationFrame(animationId); // Detener cualquier bucle previo
+    cancelAnimationFrame(animationId);
     let count = 3;
     const cd = document.getElementById('countdown');
     cd.style.display = "block";
@@ -77,7 +77,7 @@ function startCountdown() {
             cd.innerText = "";
             cd.style.display = "none";
             gameRunning = true;
-            gameLoop(); // Iniciar el bucle aquí
+            gameLoop(); 
         }
     }, 1000);
 }
@@ -116,13 +116,13 @@ function update() {
         }
     });
 
-    // 3. Aplicar física a la pelota
+    
     ball.x += ball.vx; ball.y += ball.vy;
     ball.vx *= ball.friction; ball.vy *= ball.friction;
 
-    // 4. COLISIONES CORREGIDAS (Sustituye esta parte)
+    
     const goalTop = 200, goalBottom = 300;
-    const margin = 2; // Margen de seguridad para evitar atascos
+    const margin = 2; 
 
     // Borde Izquierdo
     if (ball.x - ball.radius <= 10) {
@@ -131,7 +131,7 @@ function update() {
             return;
         }
         ball.vx *= -0.8; 
-        ball.x = 10 + ball.radius + margin; // Lo empuja un poco al centro
+        ball.x = 10 + ball.radius + margin; 
     }
     
     // Borde Derecho
@@ -141,10 +141,10 @@ function update() {
             return;
         }
         ball.vx *= -0.8; 
-        ball.x = canvas.width - 10 - ball.radius - margin; // Lo empuja un poco al centro
+        ball.x = canvas.width - 10 - ball.radius - margin; 
     }
 
-    // Techo y Suelo
+    
     if (ball.y - ball.radius <= 10) {
         ball.vy *= -0.8;
         ball.y = 10 + ball.radius + margin;
@@ -153,7 +153,7 @@ function update() {
         ball.y = canvas.height - 10 - ball.radius - margin;
     }
 
-    // 5. Colisión con Personajes (Se queda igual)
+   
     [player, ...bots, ...allies].forEach(p => {
         const dx = ball.x - p.x;
         const dy = ball.y - p.y;
@@ -167,7 +167,7 @@ function update() {
                 ball.vx = Math.cos(angle) * 5;
                 ball.vy = Math.sin(angle) * 5;
             }
-            // Reposicionar la pelota fuera del jugador para evitar que se pegue
+            
             const angle = Math.atan2(dy, dx);
             ball.x = p.x + Math.cos(angle) * (p.radius + ball.radius + 2);
             ball.y = p.y + Math.sin(angle) * (p.radius + ball.radius + 2);
@@ -181,7 +181,7 @@ function checkGoal(winner) {
     document.getElementById('p-score').innerText = score.player;
     document.getElementById('b-score').innerText = score.bot;
 
-    // --- SONIDO DE GOL ---
+    
     const goalSound = document.getElementById('goalSound');
     if (goalSound) {
         goalSound.currentTime = 0;
@@ -210,48 +210,47 @@ function endGame(win) {
 }
 
 function draw() {
-    // 1. Limpiar y dibujar el césped
+    
     ctx.fillStyle = "#2e7d32";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // 2. Dibujar líneas del campo
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.6)"; // Blanco semi-transparente
+    
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
     ctx.lineWidth = 3;
 
-    // Línea de banda y fondo (margen de 10px)
+    
     ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
 
-    // Línea de medio campo
+    
     ctx.beginPath();
     ctx.moveTo(canvas.width / 2, 10);
     ctx.lineTo(canvas.width / 2, canvas.height - 10);
     ctx.stroke();
 
-    // Círculo central
+    
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, 60, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Punto central
+   
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, 3, 0, Math.PI * 2);
     ctx.fillStyle = "white";
     ctx.fill();
 
-    // Áreas de penalti
-    // Área Izquierda
+    
     ctx.strokeRect(10, canvas.height / 2 - 100, 80, 200);
-    // Área Derecha
+    
     ctx.strokeRect(canvas.width - 90, canvas.height / 2 - 100, 80, 200);
 
-    // 3. Porterías (con color sólido para que se vean claras)
+    
     ctx.fillStyle = "white";
-    // Poste izquierdo
+    
     ctx.fillRect(0, 200, 10, 100);
-    // Poste derecho
+    
     ctx.fillRect(canvas.width - 10, 200, 10, 100);
 
-    // 4. Dibujar Personajes (Jugador, Aliados y Bots)
+    
     [player, ...allies, ...bots].forEach(p => {
         ctx.fillStyle = p.color;
         ctx.beginPath(); 
@@ -262,7 +261,7 @@ function draw() {
         ctx.stroke();
     });
 
-    // 5. Guía de tiro del jugador (Línea punteada)
+    
     if (gameRunning) {
         ctx.save();
         ctx.beginPath();
@@ -277,7 +276,7 @@ function draw() {
         ctx.restore();
     }
 
-    // 6. Dibujar Pelota
+    
     ctx.fillStyle = "white";
     ctx.beginPath(); 
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2); 
@@ -304,7 +303,7 @@ function gameLoop() {
 
 function resetToMenu() { location.reload(); }
 
-// Mapeo de botones táctiles
+
 const mobileButtons = {
     'btn-up': 'ArrowUp',
     'btn-down': 'ArrowDown',
@@ -315,18 +314,18 @@ const mobileButtons = {
     'btn-shoot': 'Space'
 };
 
-// Configurar eventos para cada botón
+
 Object.entries(mobileButtons).forEach(([id, keyCode]) => {
     const btn = document.getElementById(id);
     if (!btn) return;
 
-    // Al tocar (Presionar)
+    
     btn.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keys[keyCode] = true;
     });
 
-    // Al levantar el dedo (Soltar)
+    
     btn.addEventListener('touchend', (e) => {
         e.preventDefault();
         keys[keyCode] = false;
@@ -335,7 +334,7 @@ Object.entries(mobileButtons).forEach(([id, keyCode]) => {
 
 draw();
 
-// --- Mostrar controles móviles solo en dispositivos táctiles ---
+
 function isTouchDevice() {
     return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 }

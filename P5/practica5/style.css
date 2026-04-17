@@ -117,11 +117,10 @@ button:hover { background: #66bb6a; transform: scale(1.05); }
     bottom: 0;
     background: rgba(34, 34, 34, 0.95);
     z-index: 100;
-    pointer-events: none; /* Para que no bloquee clics accidentales fuera de los botones */
+    pointer-events: none; 
     box-sizing: border-box;
 }
 
-/* Ajuste para landscape: controles pegados a los lados, sin tapar el campo */
 @media (orientation: landscape) and (pointer: coarse) {
     #mobile-controls {
         position: fixed;
