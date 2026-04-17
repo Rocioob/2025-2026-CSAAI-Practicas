@@ -105,7 +105,7 @@ function update() {
     if (keys['KeyA']) player.angle -= 0.1;
     if (keys['KeyD']) player.angle += 0.1;
 
-    // 2. Movimiento Bots y Aliados
+    
     [...bots, ...allies].forEach(b => {
         const dx = ball.x - b.x;
         const dy = ball.y - b.y;
@@ -124,7 +124,7 @@ function update() {
     const goalTop = 200, goalBottom = 300;
     const margin = 2; 
 
-    // Borde Izquierdo
+    
     if (ball.x - ball.radius <= 10) {
         if (ball.y > goalTop && ball.y < goalBottom) {
             checkGoal('bot');
@@ -134,7 +134,7 @@ function update() {
         ball.x = 10 + ball.radius + margin; 
     }
     
-    // Borde Derecho
+    
     if (ball.x + ball.radius >= canvas.width - 10) {
         if (ball.y > goalTop && ball.y < goalBottom) {
             checkGoal('player');
@@ -281,7 +281,7 @@ function draw() {
     ctx.beginPath(); 
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2); 
     ctx.fill();
-    // Detalles negros para que parezca un balón
+    
     ctx.fillStyle = "#333";
     for (let i = 0; i < 5; i++) {
         ctx.beginPath();
